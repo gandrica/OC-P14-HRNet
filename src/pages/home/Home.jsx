@@ -1,5 +1,6 @@
 import { Link } from "react-router-dom";
 import styles from "./Home.module.scss";
+import FormCreateEmployee from "../../components/formCreateEmployee/FormCreateEmployee";
 
 function Home() {
   return (
@@ -9,7 +10,7 @@ function Home() {
         <Link to="/employees">View Current Employees</Link>
       </header>
       <main>
-        <h2>Create Employee</h2>
+        <FormCreateEmployee />
       </main>
     </>
   );

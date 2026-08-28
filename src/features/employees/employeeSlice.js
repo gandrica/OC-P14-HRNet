@@ -15,7 +15,7 @@ const initialState = {
   ],
 };
 
-const employeesSlice = createSlice({
+const employeeSlice = createSlice({
   name: "employees",
   initialState,
   reducers: {
@@ -25,5 +25,5 @@ const employeesSlice = createSlice({
   },
 });
 
-export const { addEmployee, setTableHeaders } = employeesSlice.actions;
-export default employeesSlice.reducer;
+export const { addEmployee } = employeeSlice.actions;
+export default employeeSlice.reducer;
