@@ -8,6 +8,7 @@ import { formatMyDate } from "../../services/utils.js";
 import FormModal from "../formModal/FormModal.jsx";
 import styles from "./FormCreateEmployee.module.scss";
 import DateInput from "../dateInput/DateInput.jsx";
+import FormCustomSelect from "../formCustomSelect/FormCustomSelect.jsx";
 
 const states = [
   { name: "Alabama", abbreviation: "AL" },
@@ -142,36 +143,28 @@ function FormCreateEmployee() {
           <label htmlFor="city">City</label>
           <input id="city" {...register("city")} />
 
-          <label htmlFor="state">State</label>
-          <select
-            id="state"
-            {...register("state")}
-            className={styles.customSelect}
-          >
-            {states.map((state) => (
-              <option key={state.abbreviation} value={state.abbreviation}>
-                {state.name}
-              </option>
-            ))}
-          </select>
+          <FormCustomSelect
+            options={{
+              labelName: "state",
+              labelText: "State",
+              registerFunc: register,
+              listSelection: states,
+            }}
+          />
 
           <label htmlFor="zipCode">Zip Code</label>
           <input type="number" id="zipCode" {...register("zipCode")} />
         </fieldset>
 
         <div className={styles.formGroup}>
-          <label htmlFor="department">Department</label>
-          <select
-            id="department"
-            {...register("department")}
-            className={styles.customSelect}
-          >
-            {departments.map((dept) => (
-              <option key={dept} value={dept}>
-                {dept}
-              </option>
-            ))}
-          </select>
+          <FormCustomSelect
+            options={{
+              labelName: "department",
+              labelText: "Department",
+              registerFunc: register,
+              listSelection: departments,
+            }}
+          />
         </div>
 
         <button type="submit" className={styles.saveBtn}>
