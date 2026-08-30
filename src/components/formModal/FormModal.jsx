@@ -1,14 +1,23 @@
 import Modal from "react-modal";
+import styles from "./FormModal.module.scss";
+
+Modal.setAppElement("#root");
 function FormModal({ modalIsOpen, setModalIsOpen }) {
   return (
     <Modal
       isOpen={modalIsOpen}
       onRequestClose={() => setModalIsOpen(false)}
       contentLabel="Employee Created"
+      className={styles.modalContent}
+      overlayClassName={styles.modalOverlay}
     >
-      <h2>Success !</h2>
-      <p>Employee successfully created.</p>
-      <button onClick={() => setModalIsOpen(false)}>Close</button>
+      <span className={styles.modalText}>Employee Created!</span>
+      <button
+        className={styles.closeButton}
+        onClick={() => setModalIsOpen(false)}
+      >
+        ✕
+      </button>
     </Modal>
   );
 }

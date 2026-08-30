@@ -1,5 +1,10 @@
-export const formatMyDate = (dateString) => {
-  if (!dateString) return "";
-  const [year, month, day] = dateString.split("-");
-  return `${month}/${day}/${year}`;
+export const formatMyDate = (dateInput) => {
+  if (!dateInput) return "";
+  const date = new Date(dateInput);
+
+  return date.toLocaleDateString("fr-FR", {
+    day: "2-digit",
+    month: "2-digit",
+    year: "numeric",
+  });
 };

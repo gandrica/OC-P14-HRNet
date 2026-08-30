@@ -1,0 +1,166 @@
+.datePickerWrapper {
+  /* SURCHARGE DES CLASSES NATIVES DE REACT-DATEPICKER */
+  :global {
+    // div[role="table"] {
+    //   border: 1px solid #a0a0a0;
+    // }
+    .react-datepicker {
+      border: 1px solid #d3d3d3;
+      border-radius: 4px;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+      font-family: Arial, sans-serif;
+      background-color: #fff;
+
+      overflow: hidden;
+      padding: 10px;
+    }
+
+    /* Conteneur de l'en-tête natif */
+    .react-datepicker__header {
+      background-color: #fff; /* Le fond gris sera géré par notre calendarContainer */
+      border-bottom: none;
+      padding: 0;
+    }
+
+    /* Barre des jours (Sun, Mon...) */
+    .react-datepicker__day-names {
+      background-color: #f2f2f2;
+      border-top: 1px solid #d3d3d3;
+      border-bottom: 1px solid #d3d3d3; /* Bordure horizontale uniforme */
+      display: flex;
+      width: 100%;
+      margin: 0;
+    }
+
+    .react-datepicker__day-name {
+      color: #777;
+      font-weight: bold;
+      flex: 1;
+      line-height: 2.2rem;
+      margin: 0;
+      border-right: 1px solid #d3d3d3; /* Bordure verticale uniforme */
+      box-sizing: border-box;
+
+      &:last-child {
+        border-right: none;
+      }
+    }
+
+    /* Grille des jours (1, 2, 3...) */
+    .react-datepicker__month {
+      margin: 0;
+      padding: 0;
+      width: 100%;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .react-datepicker__week {
+      display: flex;
+      width: 100%;
+      border-bottom: 1px solid #d3d3d3;
+
+      &:last-child {
+        border-bottom: none;
+      }
+    }
+
+    .react-datepicker__day {
+      flex: 1;
+      height: 2.2rem;
+      margin: 0;
+      border-right: 1px solid #d3d3d3; /* Bordure verticale uniforme */
+      border-radius: 0;
+      color: #555;
+      background-color: #f6f6f6;
+      display: inline-flex;
+      justify-content: flex-end;
+      align-items: center;
+      padding-right: 6px;
+      box-sizing: border-box;
+
+      &:last-child {
+        border-right: none;
+      }
+
+      &:hover {
+        background-color: #e6e6e6;
+        color: #212121;
+      }
+    }
+
+    /* Jours hors du mois courant */
+    .react-datepicker__day--outside-month {
+      color: #b5b5b5;
+      background-color: #ffffff52;
+    }
+
+    /* Jour sélectionné (Bleu de l'image) */
+    .react-datepicker__day--selected,
+    .react-datepicker__day--keyboard-selected {
+      background-color: #3eb4f0 !important;
+      color: white;
+      font-weight: bold;
+    }
+  }
+}
+
+/* STYLES DE NOTRE EN-TÊTE PERSONNALISÉ */
+.calendarContainer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 8px;
+  background-color: #fff;
+  border-radius: 3px 3px 0 0;
+
+  .leftGroup,
+  .rightGroup {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+
+    button {
+      font-size: 24px;
+    }
+    .homeIcon {
+      font-size: 16px;
+    }
+  }
+
+  .centerGroup {
+    display: flex;
+    align-items: center;
+    padding-bottom: 4px;
+    gap: 4px;
+  }
+
+  button {
+    background: none;
+    border: none;
+    color: #888;
+    cursor: pointer;
+    font-size: 16px;
+    padding: 0;
+
+    &:hover {
+      color: #555;
+    }
+
+    &:disabled {
+      color: #ccc;
+      cursor: default;
+    }
+  }
+
+  select {
+    background: none;
+    border: none;
+    font-weight: bold;
+    color: #000000; /* Le texte des dropdowns est très légèrement bleu foncé sur l'image */
+    font-size: 16px;
+    cursor: pointer;
+    outline: none;
+    text-align: right;
+  }
+}

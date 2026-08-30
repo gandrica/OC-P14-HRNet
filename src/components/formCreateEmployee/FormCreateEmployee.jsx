@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { useForm } from "react-hook-form";
+import { useForm, Controller } from "react-hook-form";
 import { useDispatch } from "react-redux";
 
 import { addEmployee } from "../../features/employees/employeeSlice.js";
@@ -7,6 +7,7 @@ import { formatMyDate } from "../../services/utils.js";
 
 import FormModal from "../formModal/FormModal.jsx";
 import styles from "./FormCreateEmployee.module.scss";
+import DateInput from "../dateInput/DateInput.jsx";
 
 const states = [
   { name: "Alabama", abbreviation: "AL" },
@@ -76,6 +77,7 @@ function FormCreateEmployee() {
     register,
     handleSubmit,
     reset,
+    control,
     formState: { errors },
   } = useForm();
 
@@ -91,10 +93,10 @@ function FormCreateEmployee() {
   };
 
   return (
-    <div className="container">
+    <div className={styles.formContainer}>
       <h2>Create Employee</h2>
-      <form onSubmit={handleSubmit(onSubmit)} className="employee-form">
-        <div className="form-group">
+      <form onSubmit={handleSubmit(onSubmit)} className={styles.formEmployee}>
+        <div className={styles.formGroup}>
           <label htmlFor="firstName">First Name</label>
           <input
             id="firstName"
@@ -105,7 +107,7 @@ function FormCreateEmployee() {
           )}
         </div>
 
-        <div className="form-group">
+        <div className={styles.formGroup}>
           <label htmlFor="lastName">Last Name</label>
           <input
             id="lastName"
@@ -113,17 +115,25 @@ function FormCreateEmployee() {
           />
         </div>
 
-        <div className="form-group">
+        <div className={styles.formGroup}>
           <label htmlFor="birthDate">Date of Birth</label>
-          <input type="date" id="birthDate" {...register("birthDate")} />
+          <Controller
+            control={control}
+            name="birthDate"
+            render={({ field }) => <DateInput id="birthDate" field={field} />}
+          />
         </div>
 
-        <div className="form-group">
+        <div className={styles.formGroup}>
           <label htmlFor="startDate">Start Date</label>
-          <input type="date" id="startDate" {...register("startDate")} />
+          <Controller
+            control={control}
+            name="startDate"
+            render={({ field }) => <DateInput id="startDate" field={field} />}
+          />
         </div>
 
-        <fieldset className="address-group">
+        <fieldset className={styles.addressGroup}>
           <legend>Address</legend>
 
           <label htmlFor="street">Street</label>
@@ -133,7 +143,11 @@ function FormCreateEmployee() {
           <input id="city" {...register("city")} />
 
           <label htmlFor="state">State</label>
-          <select id="state" {...register("state")}>
+          <select
+            id="state"
+            {...register("state")}
+            className={styles.customSelect}
+          >
             {states.map((state) => (
               <option key={state.abbreviation} value={state.abbreviation}>
                 {state.name}
@@ -145,9 +159,13 @@ function FormCreateEmployee() {
           <input type="number" id="zipCode" {...register("zipCode")} />
         </fieldset>
 
-        <div className="form-group">
+        <div className={styles.formGroup}>
           <label htmlFor="department">Department</label>
-          <select id="department" {...register("department")}>
+          <select
+            id="department"
+            {...register("department")}
+            className={styles.customSelect}
+          >
             {departments.map((dept) => (
               <option key={dept} value={dept}>
                 {dept}
@@ -156,12 +174,12 @@ function FormCreateEmployee() {
           </select>
         </div>
 
-        <button type="submit" className="save-btn">
+        <button type="submit" className={styles.saveBtn}>
           Save
         </button>
       </form>
 
-      <FormModal modal={modalIsOpen} setModalIsOpen={setModalIsOpen} />
+      <FormModal modalIsOpen={modalIsOpen} setModalIsOpen={setModalIsOpen} />
     </div>
   );
 }
