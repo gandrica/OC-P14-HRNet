@@ -1,8 +1,10 @@
 {
   "name": "hrnet",
   "private": true,
-  "version": "0.0.0",
+  "version": "1.0.0",
   "type": "module",
+  "description": "Modernized internal employee management web application for Wealth Health, migrated from jQuery to React and Redux.",
+  "author": "Gabriel ANDRICA",
   "scripts": {
     "dev": "vite",
     "build": "vite build",
