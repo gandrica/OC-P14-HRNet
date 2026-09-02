@@ -1,0 +1,3 @@
+# Autorise tous les robots d'indexation (Googlebot, Bingbot...) à scanner le site
+User-agent: *
+Allow: /
